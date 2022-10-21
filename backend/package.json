@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Skizx/PIIQUANTE/issues"
   },
-  "homepage": "https://github.com/Skizx/PIIQUANTE#readme"
+  "homepage": "https://github.com/Skizx/PIIQUANTE#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
