@@ -1,11 +1,21 @@
-//Importation d'Express
+//Importation d'Express, Mongoose
 const express = require('express');
+const mongoose = require('mongoose')
 
 //J'appel la méthode express ce qui va permettre de crée mon application express
 const app = express();
 
+//Je connecte mon API à ma base de données
+mongoose.connect('mongodb+srv://Skizx:sarcelles95@cluster0.s6td80d.mongodb.net/?retryWrites=true&w=majority',
+{ useNewUrlParser: true,
+  useUnifiedTopology: true })
+.then(() => console.log('Connexion à MongoDB réussie !'))
+.catch(() => console.log('Connexion à MongoDB échouée !'));
 
 //+++++++++++++ MIDDLEWARE +++++++++++++++++++
+
+// Intercèpte tout les requêtes json et les mets à disposition dans req.body
+app.use(express.json());
 
 //+++++++++++++ CORS +++++++++++++++++++
 app.use((req, res, next) => {
