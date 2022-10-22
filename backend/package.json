@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/Skizx/PIIQUANTE#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "express": "^4.18.2",
-    "mongoose": "^6.6.6"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.6",
+    "mongoose-unique-validator": "^3.1.0",
+    "multer": "^1.4.5-lts.1"
   }
 }
