@@ -1,6 +1,7 @@
-//Importation d'Express, Mongoose
+//Importation d'Express, Mongoose, Routeur
 const express = require('express');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const sauceRoutes = require('./routes/sauce');
 
 //J'appel la méthode express ce qui va permettre de crée mon application express
 const app = express();
@@ -47,6 +48,9 @@ app.use((req, res, next) => {
     console.log('Réponse envoyée avec succès !');
   });
 
+
+// J'importe le routeur exporté par sauce.js
+app.use('/api/sauces', sauceRoutes);
 
 //J'exporte cette application pour pouvoir y acceder depuis mon serveur node
 module.exports = app;
