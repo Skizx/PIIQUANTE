@@ -44,8 +44,9 @@ exports.login = (req, res, next) => {
                 // Si il correspond renvoie une réponse contenant l'ID de l'utilisateur ainsi que le token
                     res.status(200).json({ 
                         userId: user._id,
-                        // Appel la fonction sign de jswebtoken 
+                        // Appel la fonction sign de jswebtoken permettant de chiffrer un nouveau token 
                         token: jwt.sign(
+                            // Encodage du userId pour la création d'objet ne devant pas être modifiable par d'autres utilisateurs
                             { userId: user._id },
                             // Clé secrete pour l'encodage
                             'RANDOM_TOKEN_SECRET',
