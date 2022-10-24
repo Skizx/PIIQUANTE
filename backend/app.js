@@ -3,12 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 //J'appel la méthode express ce qui va permettre de crée mon application express
 const app = express();
 
 //Je connecte mon API à ma base de données
-mongoose.connect('mongodb+srv://Skizx:sarcelles95@cluster0.s6td80d.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://Skizx:SJzAMMebRmZw77vd@cluster0.s6td80d.mongodb.net/?retryWrites=true&w=majority',
 { useNewUrlParser: true,
   useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 // J'importe le routeur exporté par sauce.js
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //J'exporte cette application pour pouvoir y acceder depuis mon serveur node
 module.exports = app;
