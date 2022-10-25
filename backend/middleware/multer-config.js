@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     },
     // Indication du nom de fichier à utiliser pour multer
     // Utilisation de la méthode split & join enlever les éspaces et les remplacer par des underscore
-    filename: (res, file, callback) => {
+    filename: (req, file, callback) => {
         const name = file.originalname.split(' ').join('_');
         // Utilisation de MIME_TYPES
         const extension = MIME_TYPES[file.mimetype];
