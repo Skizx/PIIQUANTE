@@ -5,11 +5,14 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
+//
+require('dotenv').config();
+
 //J'appel la méthode express ce qui va permettre de crée mon application express
 const app = express();
 
 //Je connecte mon API à ma base de données
-mongoose.connect('mongodb+srv://Skizx:SJzAMMebRmZw77vd@cluster0.s6td80d.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_URL,
 { useNewUrlParser: true,
   useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
