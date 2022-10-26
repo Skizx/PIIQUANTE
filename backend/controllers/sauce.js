@@ -26,21 +26,10 @@ exports.modifySauce = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
     
-    delete sauceObject._userId;
-    Sauce.findOne({ _id: req.params.id })
-    .then((sauce) => {
-        if(sauce.userId != req.auth.userId) {
-            res.status(401).json({ message: 'Non autorisé !'})
-        } else {
-            Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id})
-            .then(() => res.status(200).json({ message: 'Sauce Modifié !'}))
-            .catch(error => res.status(401).json({ error }));
-        }})
-
-        .catch((error) => {
-            res.status(400).json({ error });
-        });
-};
+        Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id})
+        .then(() => res.status(200).json({ message: 'Sauce Modifié !'}))
+        .catch(error => res.status(401).json({ error }));
+}
 
 // Supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
