@@ -23,10 +23,9 @@ mongoose.connect(process.env.MONGO_URL,
 
 // Création du middleware de limitant les tentatives de connexion par utilisateur
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 15, // Limite de 100 tentatives
-  standardHeaders: true, // Retourne les informations dans le RateLimit Header
-  legacyHeaders: false, // Desactive X-Ratelimit headers
+  windowMs: 60 * 60 * 1000, // 1 heure
+  max: 5, // Limite de 100 tentatives
+  message: 'Trop de tentatives de connexion sans reussite, Veuillez réessayer ulterieurement.',
 });
 // Appication du middleware limitant les tentatives de connexion
 app.use('/api', limiter);
