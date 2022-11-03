@@ -84,7 +84,7 @@ exports.likeDislike = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
     } else if (req.body.like === -1) {
         Sauce.updateOne({ _id: req.params.id}, { $inc: { dislikes: req.body.like++ * -1 }, $push: { usersDisliked: req.body.userId } })
-        .then(() => res.status(200).json({ message: 'Like enlevé !' }))
+        .then(() => res.status(200).json({ message: 'Dislike ajoutée !' }))
         .catch(error => res.status(400).json({ error }))
     } else { 
         Sauce.findOne({ _id: req.params.id })
