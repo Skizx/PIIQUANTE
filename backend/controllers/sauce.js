@@ -83,7 +83,7 @@ exports.likeDislike = (req, res, next) => {
         .then(() => res.status(200).json({ message: 'Like ajoutée !'}))
         .catch(error => res.status(400).json({ error }))
     } else if (req.body.like === -1) {
-        Sauce.updateOne({ _id: req.params.id}, { $inc: { likes: req.body.like-- }, $push: { usersDisliked: req.body.userId } })
+        Sauce.updateOne({ _id: req.params.id}, { $inc: { dislikes: req.body.like++ * -1 }, $push: { usersDisliked: req.body.userId } })
         .then(() => res.status(200).json({ message: 'Like enlevé !' }))
         .catch(error => res.status(400).json({ error }))
     } else { 
