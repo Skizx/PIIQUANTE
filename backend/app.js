@@ -5,7 +5,6 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
-
 //
 require('dotenv').config();
 
@@ -24,11 +23,11 @@ mongoose.connect(process.env.MONGO_URL,
 // Création du middleware de limitant les tentatives de connexion par utilisateur
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 heure
-  max: 5, // Limite de 100 tentatives
+  max: 100, // Limite de 100 tentatives
   message: 'Trop de tentatives de connexion sans reussite, Veuillez réessayer ulterieurement.',
 });
 // Appication du middleware limitant les tentatives de connexion
-app.use('/api', limiter);
+app.use('/api/auth', limiter);
 // Intercèpte tout les requêtes json et les mets à disposition dans req.body
 app.use(express.json());
 
