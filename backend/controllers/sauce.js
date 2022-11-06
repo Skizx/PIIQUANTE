@@ -30,12 +30,6 @@ exports.modifySauce = (req, res, next) => {
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
-
-    Sauce.findOne({ _id: req.params.id}).then((sauce) => {
-        // Je supprime l'ancienne image du serveur
-        const filename = sauce.imageUrl.split('/images')[1]
-        fs.unlinkSync(`images/${filename}`)
-    })
     
     // J'applique les paramètres sauceObject
     Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id})
